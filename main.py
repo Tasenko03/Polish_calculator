@@ -83,6 +83,7 @@ class CalculateNotation(Notation):
             return operand1 ** operand2
 
     def calculate(self) -> None:
+        """Performs calculations of notation"""
         if self.token.isdigit() or self.token.replace('.', '').isdigit():
             self._stack.append(float(self.token))
         elif self.token in self._signs:
