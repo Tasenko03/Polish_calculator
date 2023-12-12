@@ -38,9 +38,9 @@ class Notation:
         self._signs = ['+', '-', '*', '/', '^']
         self._power_of_sign = {'-': 1, '+': 1, '*': 2, '/': 2, '^': 3}
 
-    def power_of_signs(self, token: str) -> int:
+    def power_of_signs(self, sign: str) -> int:
         """Returns the power of sign"""
-        return self._power_of_sign.get(token, 0)
+        return self._power_of_sign.get(sign, 0)
 
     def append_notation(self) -> None:
         """Appends polish notation"""
