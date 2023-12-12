@@ -23,29 +23,8 @@ def split_expression(raw_expression: str) -> Optional[list[str]]:
             print(f'{elem} is incorrect in your expression\nPlease, try again')
             return None
 
-    while numbers:
-        new_expression.append(numbers.pop(0))
+    new_expression.append("".join(numbers))
     return new_expression
-
-
-def power_of_signs(operator: str) -> int:
-    """Functions returns the power of sign"""
-    power_of_sign = {'-': 1, '+': 1, '*': 2, '/': 2, '^': 3}
-    return power_of_sign.get(operator, 0)
-
-
-def operation(operand1: float, operand2: float, operator: str) -> float:
-    """Function returns the operation needed to calculate depending on the sign"""
-    if operator == '+':
-        return operand1 + operand2
-    elif operator == '-':
-        return operand1 - operand2
-    elif operator == '*':
-        return operand1 * operand2
-    elif operator == '/':
-        return operand1 / operand2
-    elif operator == '^':
-        return operand1 ** operand2
 
 
 class Notation:
@@ -57,13 +36,18 @@ class Notation:
         self.notation = notation_
         self.token = token
         self._signs = ['+', '-', '*', '/', '^']
+        self._power_of_sign = {'-': 1, '+': 1, '*': 2, '/': 2, '^': 3}
+
+    def power_of_signs(self, token: str) -> int:
+        """Returns the power of sign"""
+        return self._power_of_sign.get(token, 0)
 
     def append_notation(self) -> None:
         """Appends polish notation"""
         if self.token.isdigit() or self.token.replace('.', '').isdigit():
             self.notation.append(self.token)
         elif self.token in self._signs:
-            while self._stack and power_of_signs(self._stack[-1]) >= power_of_signs(self.token):
+            while self._stack and self.power_of_signs(self._stack[-1]) >= self.power_of_signs(self.token):
                 self.notation.append(self._stack.pop())
             self._stack.append(self.token)
         elif self.token == "(":
@@ -84,11 +68,25 @@ class Notation:
 
 class CalculateNotation(Notation):
     """Calculates polish notation"""
+
+    def operation(self, operand1: float, operand2: float) -> float:
+        """Returns the operation needed to calculate depending on the sign"""
+        if self.token == '+':
+            return operand1 + operand2
+        elif self.token == '-':
+            return operand1 - operand2
+        elif self.token == '*':
+            return operand1 * operand2
+        elif self.token == '/':
+            return operand1 / operand2
+        elif self.token == '^':
+            return operand1 ** operand2
+
     def calculate(self) -> None:
         if self.token.isdigit() or self.token.replace('.', '').isdigit():
             self._stack.append(float(self.token))
         elif self.token in self._signs:
             operand_2 = self._stack.pop()
             operand_1 = self._stack.pop()
-            result = operation(operand_1, operand_2, self.token)
+            result = self.operation(operand_1, operand_2)
             self._stack.append(result)
