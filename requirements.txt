@@ -1,1 +1,7 @@
+flake8==6.1.0
+flake8-assertive==2.1.0
+flake8-import-order==0.18.2
+mccabe==0.7.0
+pycodestyle==2.11.1
 pytest==7.4.3
+pyflakes==3.1.0
