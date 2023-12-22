@@ -1,11 +1,13 @@
 from main import (
-    split_expression,
+    CalculateNotation,
     Notation,
-    CalculateNotation
+    split_expression
 )
-expression = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
+my_expression = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
 
-if __name__ == "__main__":
+
+def run(expression):
+    """Makes polish notation from expression and returns it with the result"""
     tokens = split_expression(expression)
     stack, notation = [], []
 
@@ -19,11 +21,15 @@ if __name__ == "__main__":
         while stack:
             notation.append(stack.pop())
 
-        print(f"Polish notation = {' '.join(notation)}")
-
         for token_ in notation:
             element = CalculateNotation(token_, stack, [])
             element.calculate()
             stack = element.get_stack()
 
-        print(f"Result = {stack[0]}")
+    return ' '.join(' '.join(notation)), stack[0]
+
+
+if __name__ == "__main__":
+    polish_notation, result = run(my_expression)
+    print(f"Polish notation = {polish_notation}")
+    print(f"Result = {result}")

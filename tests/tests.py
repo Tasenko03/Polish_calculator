@@ -1,5 +1,6 @@
-from main import *
 import unittest
+
+from main import split_expression
 
 
 class MainFuncTests(unittest.TestCase):

@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Any, Optional
 
 
 def split_expression(raw_expression: str) -> Optional[list[str]]:
@@ -23,7 +23,8 @@ def split_expression(raw_expression: str) -> Optional[list[str]]:
             print(f'{elem} is incorrect in your expression\nPlease, try again')
             return None
 
-    new_expression.append("".join(numbers))
+    if numbers:
+        new_expression.append("".join(numbers))
     return new_expression
 
 
