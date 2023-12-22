@@ -4,8 +4,8 @@ start.py
 from typing import Tuple
 
 from src.main import (
-    CalculateNotation,
     Notation,
+    NotationCalculator,
     split_expression
 )
 MY_EXPRESSION = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
@@ -30,14 +30,14 @@ def run(expression: str) -> Tuple[str, int]:
             notation.append(stack.pop())
 
         for token_ in notation:
-            element = CalculateNotation(token_, stack, [])
+            element = NotationCalculator(token_, stack, [])
             element.calculate()
             stack = element.get_stack()
 
     return ' '.join(' '.join(notation)), stack[0]
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     polish_notation, result = run(MY_EXPRESSION)
-    print(f"Polish notation = {polish_notation}")
-    print(f"Result = {result}")
+    print(f'Polish notation = {polish_notation}')
+    print(f'Result = {result}')

@@ -9,27 +9,28 @@ def split_expression(raw_expression: str) -> Optional[list[str]]:
     Function splits expression given from the user
     """
 
-    numbers = []
+    stack = []
     new_expression = []
 
     for elem in raw_expression:
         if elem.isdigit() or elem == '.':
-            numbers.append(elem)
+            stack.append(elem)
         elif elem == ',':
-            numbers.append('.')
+            stack.append('.')
         elif elem in ['+', '-', '*', '/', '^', '(', ')']:
-            if numbers:
-                new_expression.append("".join(numbers))
-                numbers.clear()
+            if stack:
+                new_expression.append(''.join(stack))
+                stack.clear()
             new_expression.append(elem)
         elif elem == ' ':
             pass
         else:
-            print(f'{elem} is incorrect in your expression\nPlease, try again')
-            return None
+            raise ValueError(
+                f'{elem} is incorrect in your expression\nPlease, try again'
+            )
 
-    if numbers:
-        new_expression.append("".join(numbers))
+    if stack:
+        new_expression.append(''.join(stack))
     return new_expression
 
 
@@ -65,10 +66,10 @@ class Notation:
                     and self.power_of_signs(self._stack[-1]) >= self.power_of_signs(self.token):
                 self.notation.append(self._stack.pop())
             self._stack.append(self.token)
-        elif self.token == "(":
+        elif self.token == '(':
             self._stack.append(self.token)
-        elif self.token == ")":
-            while self._stack and self._stack[-1] != "(":
+        elif self.token == ')':
+            while self._stack and self._stack[-1] != '(':
                 self.notation.append(self._stack.pop())
             self._stack.pop()
 
@@ -85,12 +86,12 @@ class Notation:
         return self._stack
 
 
-class CalculateNotation(Notation):
+class NotationCalculator(Notation):
     """
     Calculates polish notation
     """
 
-    def operation(self, operand1: float, operand2: float) -> Optional[float]:
+    def perform_operation(self, operand1: float, operand2: float) -> Optional[float]:
         """
         Returns the operation needed to calculate depending on the sign
         """
@@ -115,5 +116,5 @@ class CalculateNotation(Notation):
         elif self.token in self._signs:
             operand_2 = self._stack.pop()
             operand_1 = self._stack.pop()
-            result = self.operation(operand_1, operand_2)
+            result = self.perform_operation(operand_1, operand_2)
             self._stack.append(result)
