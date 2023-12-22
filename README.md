@@ -1,5 +1,5 @@
 [![CI](https://github.com/Tasenko03/Polish_calculator/actions/workflows/checks.yml/badge.svg)](https://github.com/Tasenko03/Polish_calculator/actions/workflows/checks.yml)
-![pylint Score](https://mperlet.github.io/pybadge/badges/10.svg)
+![pylint Score](https://mperlet.github.io/pybadge/badges/10.00.svg)
 
 # Polish notation calculator
 
