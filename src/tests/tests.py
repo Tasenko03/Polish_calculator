@@ -3,7 +3,7 @@ tests.py
 """
 import unittest
 
-from main import split_expression
+from src.main import split_expression
 
 
 class MainFuncTests(unittest.TestCase):

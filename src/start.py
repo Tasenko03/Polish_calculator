@@ -3,12 +3,12 @@ start.py
 """
 from typing import Tuple
 
-from main import (
+from src.main import (
     CalculateNotation,
     Notation,
     split_expression
 )
-my_expression = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
+MY_EXPRESSION = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
 
 
 def run(expression: str) -> Tuple[str, int]:
@@ -38,6 +38,6 @@ def run(expression: str) -> Tuple[str, int]:
 
 
 if __name__ == "__main__":
-    polish_notation, result = run(my_expression)
+    polish_notation, result = run(MY_EXPRESSION)
     print(f"Polish notation = {polish_notation}")
     print(f"Result = {result}")
