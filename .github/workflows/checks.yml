@@ -20,12 +20,14 @@ jobs:
 
       - name: Setup venv & install dependencies
         run: |
-          export PYTHONPATH=$(pwd):$PYTHONPATH
           python -m pip install --upgrade pip
           python -m pip install virtualenv
           python -m virtualenv venv
           source venv/bin/activate
           python -m pip install -r requirements.txt
+
+      - name: Export PYTHONPATH
+        run: export PYTHONPATH=$(pwd):$PYTHONPATH
 
       - name: Run pylint
         run: python -m pylint src
