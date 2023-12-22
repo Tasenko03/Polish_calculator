@@ -1,3 +1,8 @@
+"""
+start.py
+"""
+from typing import Tuple
+
 from main import (
     CalculateNotation,
     Notation,
@@ -6,10 +11,13 @@ from main import (
 my_expression = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
 
 
-def run(expression):
-    """Makes polish notation from expression and returns it with the result"""
+def run(expression: str) -> Tuple[str, int]:
+    """
+    Makes polish notation from expression and returns it with the result
+    """
     tokens = split_expression(expression)
-    stack, notation = [], []
+    stack: list = []
+    notation: list = []
 
     if tokens:
         for token_ in tokens:

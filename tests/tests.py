@@ -1,3 +1,6 @@
+"""
+tests.py
+"""
 import unittest
 
 from main import split_expression
@@ -14,7 +17,7 @@ class MainFuncTests(unittest.TestCase):
         """
         self.assertEqual(split_expression('0,1'), split_expression('0.1'))
 
-    def test_split_expression_spaces(self):
+    def test_split_expression_spaces(self) -> None:
         """
         Checks blank spaces processing
         """
@@ -22,7 +25,7 @@ class MainFuncTests(unittest.TestCase):
         expected = ['3', '+', '5']
         self.assertEqual(actual, expected)
 
-    def test_split_expression_basic(self):
+    def test_split_expression_basic(self) -> None:
         """
         Checks processing of every sign
         """

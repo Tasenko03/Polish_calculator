@@ -14,5 +14,8 @@ __pycache__
 # Unit test
 .pytest_cache
 
+# mypy
+.mypy_cache
+
 # macOS specific
 .DS_Store
