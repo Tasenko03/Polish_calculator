@@ -11,13 +11,14 @@ def split_expression(raw_expression: str) -> Optional[list[str]]:
 
     stack = []
     new_expression = []
+    signs = ['+', '-', '*', '/', '^', '(', ')']
 
     for elem in raw_expression:
         if elem.isdigit() or elem == '.':
             stack.append(elem)
         elif elem == ',':
             stack.append('.')
-        elif elem in ['+', '-', '*', '/', '^', '(', ')']:
+        elif elem in signs:
             if stack:
                 new_expression.append(''.join(stack))
                 stack.clear()

@@ -8,10 +8,11 @@ from src.main import (
     NotationCalculator,
     split_expression
 )
-MY_EXPRESSION = '2 +3-4*5/6^7-(234,5^2/2)+(23-(23^3)+1000)/1^23'
+MY_EXPRESSION = '5*(3-4^(3,5*2+(75+(2^8)-6)/(5,1+4203*0,1))' \
+                '+567-(45.3-(32*(3.0+3,0)/6)/3)-1)/4'
 
 
-def run(expression: str) -> Tuple[str, int]:
+def run(expression: str) -> Tuple[str, int] | Tuple[None, None]:
     """
     Makes polish notation from expression and returns it with the result
     """
@@ -34,7 +35,8 @@ def run(expression: str) -> Tuple[str, int]:
             element.calculate()
             stack = element.get_stack()
 
-    return ' '.join(' '.join(notation)), stack[0]
+        return ''.join(' '.join(notation)), stack[0]
+    return None, None
 
 
 if __name__ == '__main__':
