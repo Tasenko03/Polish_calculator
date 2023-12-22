@@ -27,13 +27,13 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Run pylint
-        run: pylint src
+        run: python -m pylint src
 
       - name: Run flake8
-        run: flake8 src
+        run: python -m flake8 src
 
       - name: Run mypy
-        run: mypy src
+        run: python -m mypy src
 
       - name: Run tests
         run: python -m pytest src/tests/tests.py
