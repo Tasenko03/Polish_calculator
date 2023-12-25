@@ -17,6 +17,6 @@ The `Notation` class accepts token, stack and notation (where elements of revers
 The `NotationCalculator` class is inherited from the `Notation` class. This class accepts token (element in `notation`) and stack. The `NotationCalculator` class evaluates an expression written in reverse Polish notation.  The computation is written to the stack. Finally, the class returns the result of the expression using the `get_stack` method, which is inherited from the parent class.
 
 ### Colaborators
-Tasenko Olga
-Berezkin Daniil
-Dzumenko Egor
+- Tasenko Olga 
+- Berezkin Daniil 
+- Dzumenko Egor
